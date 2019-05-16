@@ -13,17 +13,16 @@ var (
 	total_urls      []string
 	wait_fetch_urls []string
 	root_url        string
-	count           int = 0
 )
 
-func Scan(root string) {
+func Scan(root string) []string {
 	root_url = strings.TrimRight(root, "/")
 	been_found_urls = make(map[string]int)
 	total_urls = []string{root_url}
 	wait_fetch_urls = []string{root_url}
 	pushUrl2WaitScan(total_urls)
 	for {
-		if count >= len(wait_scan_urls) {
+		if 0 >= len(wait_scan_urls) {
 			break
 		}
 		url := wait_scan_urls[0]
@@ -31,6 +30,7 @@ func Scan(root string) {
 		urls := findAllHrefs(url)
 		pushUrl2WaitScan(urls)
 	}
+	return wait_fetch_urls
 }
 
 func pushUrl2WaitScan(urls []string) {
@@ -48,7 +48,7 @@ func pushUrl2WaitScan(urls []string) {
 }
 
 func isFoundUrl(url string) bool {
-	_, ok := been_found_urls[url]
+	_, ok := been_found_urls[strings.TrimRight(url, "/")]
 	return ok
 }
 
@@ -84,7 +84,7 @@ func checkUrl(url string) bool {
 			return valid
 		}
 	}
-	for _, r := range self {
+	for _, r := range internal {
 		if strings.Contains(url, r) && !strings.Contains(url, root_url) {
 			valid = false
 			return valid

@@ -1,0 +1,16 @@
+{
+	"equal": ["#", "###", "/", ""],
+	"contains": [
+		".jpg", ".png", ".gif", ".jpeg", ".bmp", 
+		".zip", ".rar", ".gz",
+		".pdf", ".doc", ".docx", ".xls", ".xlsx", 
+		".mp3", ".mp4",  ".wav",
+		"ftp", "sftp",
+		"tel", "mailto", 
+		"javascript:",  
+		"/uploads",
+		"/privatefile",
+		"/themes"
+	],
+	"internal": ["www", ".com", "http", "https"]
+}

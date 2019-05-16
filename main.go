@@ -2,10 +2,12 @@ package main
 
 import (
 	"./modules/scanner"
+	// "fmt"
+	// "os"
 )
 
 var (
-	website = "http://www.stec.net/"
+	website = ""
 )
 
 func main() {
