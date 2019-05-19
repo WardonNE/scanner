@@ -1,10 +1,10 @@
 package main
 
 import (
-	"modules/scanner"
-
 	"fmt"
-	"time"
+	"modules/fetcher"
+	"modules/scanner"
+	// "time"
 )
 
 var (
@@ -12,8 +12,8 @@ var (
 )
 
 func main() {
-	var start = time.Now().Unix()
-	scanner.Scan(website)
-	var end = time.Now().Unix()
-	fmt.Println("Time: ", end-start, "s")
+	urls := scanner.Scan(website)
+
+	contentTree := fetcher.NewFetcher(urls).SetTargetElement(".innercontent", 0).FetchAll().ListContentTree()
+	fmt.Println(contentTree)
 }
